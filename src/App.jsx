@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import confetti from "canvas-confetti"
 import './App.css'
 import { TURNOS } from './constantes.js'
 import { Cuadrado } from'./componentes/Cuadrado.jsx'
@@ -26,6 +27,7 @@ function App() {
 
     const newganador = checkganador(newboard)
     if(newganador){
+      confetti()
       setGanador(newganador)
       //alert('miau miau miau miau')
     }else if(checkEmpate(newboard)){
