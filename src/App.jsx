@@ -44,7 +44,7 @@ function App() {
     <main className='board'>
       <h1>3 en raya</h1>
       <button onClick={resetear}>Reset</button>
-      {/* Antonio no aprende lo suficiente, se distrae haciendo crucigramas. Espero que su trabajo de fin de grado sea de mi agrado porque yo soy parte del profesorado que corrige ese trabajo. */}
+      {/* ANt no aprende lo suficiente, se distrae haciendo crucigramas. Espero que su trabajo de fin de grado sea de mi agrado porque yo soy parte del profesorado que corrige ese trabajo. */}
       <section className="game">
         {
           board.map((_, index) => {
