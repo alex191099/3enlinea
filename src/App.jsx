@@ -5,15 +5,23 @@ import { TURNOS } from './constantes.js'
 import { Cuadrado } from'./componentes/Cuadrado.jsx'
 import { checkganador, checkEmpate } from './logica/board.js'
 import { ModalGanador } from './componentes/ModalGanador.jsx'
+import { guardar_local, resetear_local } from './logica/guardar.js'
 
 function App() {
 
-  const [board, setBoard] = useState(
-    Array(9).fill(null)
+  const [board, setBoard] = useState(() => {
+      const board_guardado = window.localStorage.getItem('tablero')
+      if(board_guardado) return JSON.parse(board_guardado)
+      return Array(9).fill(null)
+    }
   )
 
-  const [turno, setTurno] = useState(TURNOS.X)
-
+  const [turno, setTurno] = useState(() => {
+      const turno_guardado = window.localStorage.getItem('turno')
+      return turno_guardado ?? TURNOS.X
+    }
+  )
+    
   const [ganador, setGanador] = useState(null)
   //función actualizar tablero
   const actualizartablero = (index) => {
@@ -24,6 +32,11 @@ function App() {
 
     const newTurn = turno === TURNOS.X ? TURNOS.O : TURNOS.X
     setTurno(newTurn)
+
+    guardar_local({
+      tablero: newboard,
+      turno: newTurn
+    })
 
     const newganador = checkganador(newboard)
     if(newganador){
@@ -40,6 +53,7 @@ function App() {
     setBoard(Array(9).fill(null))
     setTurno(TURNOS.X)
     setGanador(null)
+    resetear_local()
   }
 
   return (
