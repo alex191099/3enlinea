@@ -1,7 +1,6 @@
 //guardar
 export const guardar_local = ({tablero, turno}) => {
     window.localStorage.setItem('tablero', JSON.stringify(tablero))
-    //JSON.stringify(board)
     window.localStorage.setItem('turno', turno)
 }
 
